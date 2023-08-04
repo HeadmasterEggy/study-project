@@ -92,7 +92,7 @@ const validateUsername = (rule, value, callback) => {
     if (value === '') {
         callback(new Error('请输入用户名'))
     } else if (!/^[a-zA-Z0-9\u4e00-\u9fa5]+$/.test(value)) {
-        callback(new Error('用户名不能包含特殊字符，只能是中文/英文'))
+        callback(new Error('用户名只能是中文或英文'))
     } else {
         callback()
     }
