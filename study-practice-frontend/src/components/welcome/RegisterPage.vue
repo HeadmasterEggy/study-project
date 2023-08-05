@@ -157,7 +157,7 @@ const register = () => {
 }
 
 const validateEmail = () => {
-    coldTime.value = 60
+    coldTime.value = 30
     post('/api/auth/valid-register-email', {
         email: form.email
     }, (message) => {
