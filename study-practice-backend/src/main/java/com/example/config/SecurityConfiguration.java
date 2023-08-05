@@ -30,7 +30,7 @@ import java.io.IOException;
 public class SecurityConfiguration {
 
     @Resource
-    AuthorizeService authorizationService;
+    AuthorizeService authorizeService;
 
     @Resource
     DataSource dataSource;
@@ -39,6 +39,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity, PersistentTokenRepository persistentTokenRepository) throws Exception {
         return httpSecurity
                 .authorizeRequests()
+                .requestMatchers("/api/auth/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -90,7 +91,7 @@ public class SecurityConfiguration {
     public AuthenticationManager authenticationManager(HttpSecurity security) throws Exception {
         return security
                 .getSharedObject(AuthenticationManagerBuilder.class)
-                .userDetailsService(authorizationService)
+                .userDetailsService(authorizeService)
                 .and()
                 .build();
     }
@@ -109,7 +110,7 @@ public class SecurityConfiguration {
         httpServletResponse.setCharacterEncoding("utf-8");
         if (httpServletRequest.getRequestURI().endsWith("/login"))
             httpServletResponse.getWriter().write(JSONObject.toJSONString(RestBean.success("登录成功")));
-        else if(httpServletRequest.getRequestURI().endsWith("/logout"))
+        else if (httpServletRequest.getRequestURI().endsWith("/logout"))
             httpServletResponse.getWriter().write(JSONObject.toJSONString(RestBean.success("退出登录成功")));
     }
 }
