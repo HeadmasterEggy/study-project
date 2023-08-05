@@ -45,7 +45,7 @@
                     </el-form>
                 </div>
                 <div style="margin-top: 70px">
-                    <el-button plain style="width: 270px;" type="danger" @click="startReset()">开始重置密码</el-button>
+                    <el-button plain style="width: 270px;" type="danger" @click="startReset()">重置密码</el-button>
                 </div>
             </div>
         </transition>
