@@ -5,18 +5,14 @@
             <div style="font-size: 14px;color: grey">在进入系统之前请先输入用户名和密码进行登录</div>
         </div>
         <div style="margin-top: 50px">
-            <el-input v-model="form.username" placeholder="用户名/邮箱" type="text">
+            <el-input v-model="form.username" type="text" placeholder="用户名/邮箱">
                 <template #prefix>
-                    <el-icon>
-                        <User/>
-                    </el-icon>
+                    <el-icon><User /></el-icon>
                 </template>
             </el-input>
-            <el-input v-model="form.password" placeholder="密码" style="margin-top: 10px" type="password">
+            <el-input v-model="form.password" type="password" style="margin-top: 10px" placeholder="密码">
                 <template #prefix>
-                    <el-icon>
-                        <Lock/>
-                    </el-icon>
+                    <el-icon><Lock /></el-icon>
                 </template>
             </el-input>
         </div>
@@ -29,19 +25,19 @@
             </el-col>
         </el-row>
         <div style="margin-top: 40px">
-            <el-button plain style="width: 270px" type="success" @click="login()">立即登录</el-button>
+            <el-button @click="login()" style="width: 270px" type="success" plain>立即登录</el-button>
         </div>
         <el-divider>
             <span style="color: grey;font-size: 13px">没有账号</span>
         </el-divider>
         <div>
-            <el-button plain style="width: 270px" type="warning" @click="router.push('/register')">注册账号</el-button>
+            <el-button style="width: 270px" @click="router.push('/register')" type="warning" plain>注册账号</el-button>
         </div>
     </div>
 </template>
 
 <script setup>
-import {Lock, User} from '@element-plus/icons-vue'
+import {User, Lock} from '@element-plus/icons-vue'
 import {reactive} from "vue";
 import {ElMessage} from "element-plus";
 import {get, post} from "@/net";
@@ -57,7 +53,7 @@ const form = reactive({
 })
 
 const login = () => {
-    if (!form.username || !form.password) {
+    if(!form.username || !form.password) {
         ElMessage.warning('请填写用户名和密码！')
     } else {
         post('/api/auth/login', {

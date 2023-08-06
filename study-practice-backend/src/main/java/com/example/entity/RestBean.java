@@ -8,7 +8,7 @@ public class RestBean<T> {
     private boolean success;
     private T message;
 
-    public RestBean(int status, boolean success, T message) {
+    private RestBean(int status, boolean success, T message) {
         this.status = status;
         this.success = success;
         this.message = message;
